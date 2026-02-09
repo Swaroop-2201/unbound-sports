@@ -11,12 +11,18 @@ const Navbar = () => {
         px-6 md:px-12 py-4
       ">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <span className="text-2xl font-extrabold text-brand-red">
-            UNBOUND
-          </span>
-          <span className="text-2xl font-extrabold text-brand-dark">
-            SPORTS
+        <div className="flex flex-col leading-tight">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-extrabold text-brand-red">
+              UNBOUND
+            </span>
+            <span className="text-2xl font-extrabold text-brand-dark">
+              SPORTS
+            </span>
+          </div>
+
+          <span className="mt-1 text-xs sm:text-sm tracking-wide text-gray-900">
+            Where quality meets value
           </span>
         </div>
 
