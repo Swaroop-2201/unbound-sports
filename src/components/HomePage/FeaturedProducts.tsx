@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 import yonex from "../../assets/Promos/YonexRacket.jpg"
 import bg65 from "../../assets/Promos/BG65.jpg"
