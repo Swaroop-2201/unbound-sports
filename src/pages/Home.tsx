@@ -15,7 +15,10 @@ const Home = () => {
       <Hero />
 
       {/* PROMOS */}
-      <section className="mt-24 md:mt-32 max-w-7xl mx-auto px-5 sm:px-6 md:px-12">
+      <section
+        id="products"
+        className="mt-24 md:mt-32 max-w-7xl mx-auto px-5 sm:px-6 md:px-12"
+      >
         <PromoSlider slides={promoSlides} />
       </section>
 

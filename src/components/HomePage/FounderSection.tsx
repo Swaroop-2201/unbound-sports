@@ -1,5 +1,5 @@
 import { MessageCircle } from "lucide-react"
-import owner from "../../assets/owner/nihar.png" 
+import owner from "../../assets/owner/nihar.jpeg" 
 
 const FounderSection = () => {
   return (

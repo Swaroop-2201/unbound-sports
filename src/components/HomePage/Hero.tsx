@@ -1,5 +1,5 @@
 import { MessageCircle } from "lucide-react"
-import pickleballImg from "../../assets/hero/pickleball.jpg"
+import badmintonlImg from "../../assets/hero/badminton.jpg"
 
 const Hero = () => {
     return (
@@ -49,16 +49,30 @@ const Hero = () => {
                             Contact Us
                         </a>
 
-                        <a
-                            href="#products"
-                            className="
-                text-sm font-medium text-gray-800
-                hover:text-[#FF2E2E]
-                transition
-              "
+                        <button
+                        onClick={() => {
+                            const element = document.getElementById("products")
+                            if (element) {
+                            const yOffset = -80 // adjust if navbar height differs
+                            const y =
+                                element.getBoundingClientRect().top +
+                                window.pageYOffset +
+                                yOffset
+
+                            window.scrollTo({
+                                top: y,
+                                behavior: "smooth",
+                            })
+                            }
+                        }}
+                        className="
+                            text-sm font-medium text-gray-800
+                            hover:text-[#FF2E2E]
+                            transition
+                        "
                         >
-                            Explore Products →
-                        </a>
+                        Explore Products →
+                        </button>
 
                     </div>
 
@@ -89,7 +103,7 @@ const Hero = () => {
 
                     {/* Main Image */}
                     <img
-                        src={pickleballImg}
+                        src={badmintonlImg}
                         alt="Sports Equipment"
                         className="w-[85%] md:w-full object-contain"
                     />
