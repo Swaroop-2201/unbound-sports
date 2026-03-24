@@ -6,9 +6,8 @@ const Hero = () => {
         <section className="relative min-h-[90vh] flex items-center bg-white overflow-hidden">
 
             {/* Background Accents */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[#FF2E2E]/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#FF2E2E]/5 rounded-full blur-3xl"></div>
-
+            <div className="pointer-events-none absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-[#FF2E2E]/10 rounded-full blur-3xl"></div>
+            <div className="pointer-events-none absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#FF2E2E]/5 rounded-full blur-3xl"></div>
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-10 items-center">
 
                 {/* LEFT CONTENT */}
@@ -50,28 +49,28 @@ const Hero = () => {
                         </a>
 
                         <button
-                        onClick={() => {
-                            const element = document.getElementById("products")
-                            if (element) {
-                            const yOffset = -80 // adjust if navbar height differs
-                            const y =
-                                element.getBoundingClientRect().top +
-                                window.pageYOffset +
-                                yOffset
+                            onClick={() => {
+                                const element = document.getElementById("products")
+                                if (element) {
+                                    const yOffset = -80 // adjust if navbar height differs
+                                    const y =
+                                        element.getBoundingClientRect().top +
+                                        window.pageYOffset +
+                                        yOffset
 
-                            window.scrollTo({
-                                top: y,
-                                behavior: "smooth",
-                            })
-                            }
-                        }}
-                        className="
+                                    window.scrollTo({
+                                        top: y,
+                                        behavior: "smooth",
+                                    })
+                                }
+                            }}
+                            className="
                             text-sm font-medium text-gray-800
                             hover:text-[#FF2E2E]
                             transition
                         "
                         >
-                        Explore Products →
+                            Explore Products →
                         </button>
 
                     </div>
