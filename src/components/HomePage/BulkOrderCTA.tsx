@@ -38,7 +38,7 @@ const BulkOrderCTA = () => {
           {/* CTA */}
           <div className="mt-8">
             <a
-              href="https://wa.me/918983337734"
+              href="https://wa.me/918983337734?text=Hi%20I%20am%20interested%20in%20bulk%20order"
               target="_blank"
               rel="noopener noreferrer"
               className="
