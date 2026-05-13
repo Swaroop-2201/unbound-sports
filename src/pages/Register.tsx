@@ -89,11 +89,14 @@ export default function Register() {
     document.head.appendChild(script);
 
     fetch(`${GAS_URL}?action=config`)
-      .then((r) => r.json())
-      .then((d) => {
-        razorpayKey.current = d.razorpayKey || "";
-      })
-      .catch(() => {});
+    .then((r) => r.text())
+    .then((text) => {
+      const d = JSON.parse(text);
+      razorpayKey.current = d.razorpayKey || "";
+    })
+    .catch((err) => {
+      console.error("Config fetch error:", err);
+    });
 
     return () => { document.head.removeChild(script); };
   }, []);
@@ -165,7 +168,6 @@ export default function Register() {
 
       const res = await fetch(GAS_URL, {
         method: "POST",
-        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
           action: "submit",
           ...form,
@@ -176,7 +178,9 @@ export default function Register() {
           partners: partnersPayload,
         }),
       });
-      const data = await res.json();
+      
+      const text = await res.text();
+      const data = JSON.parse(text);
       setLoading(false);
       if (!data.success) { setGlobalError(data.error || "Submission failed."); return; }
       openRazorpay(data);
@@ -210,10 +214,15 @@ export default function Register() {
     try {
       const res = await fetch(GAS_URL, {
         method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ action: "confirm", regId, paymentId }),
+        body: JSON.stringify({
+          action: "confirm",
+          regId,
+          paymentId,
+        }),
       });
-      const data = await res.json();
+      
+      const text = await res.text();
+      const data = JSON.parse(text);
       setLoading(false);
       setSuccess({ regId, amount, waLink: data.whatsappLink || WHATSAPP_LINK, name, events: Array.from(selected) });
     } catch {
