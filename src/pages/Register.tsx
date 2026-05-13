@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 // ─── CONFIG — edit these two lines ───────────────────────────
 const GAS_URL =
-  "https://script.google.com/macros/s/AKfycbxgB_soJoosN9oJADk1GwPeVeuvdE0ab2hXvK8XI8JWAfHBb9jJqUzPf36HNI5E6S7qYg/exec";
+  "https://script.google.com/macros/s/AKfycbwih3XTCF94chwYIcdjxXaC8g3YJmiRYkM__VUv551rQg5lp40-ArzRka0HHnUJDCWIow/exec";
 const WHATSAPP_LINK = "https://chat.whatsapp.com/GKwo9EKKog5AZCCPJvzCOC";
 // ─────────────────────────────────────────────────────────────
 
