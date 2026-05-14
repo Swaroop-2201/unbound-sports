@@ -56,13 +56,13 @@ const WHATSAPP_INVITE = "https://chat.whatsapp.com/GKwo9EKKog5AZCCPJvzCOC";
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function calculateAge(dob: string): number {
   const birth = new Date(dob);
-  const cutoff = new Date("2025-12-31");
+  const cutoff = new Date("2026-05-01");
   let age = cutoff.getFullYear() - birth.getFullYear();
   const m = cutoff.getMonth() - birth.getMonth();
   if (m < 0 || (m === 0 && cutoff.getDate() < birth.getDate())) age--;
   return age;
 }
-
+ 
 function isEventEligible(event: EventOption, gender: string, age: number): boolean {
   if (event.ageGroup === "U11" && age >= 11) return false;
   if (event.ageGroup === "U13" && age >= 13) return false;
@@ -71,18 +71,18 @@ function isEventEligible(event: EventOption, gender: string, age: number): boole
   if (event.gender === "girls" && gender !== "Female") return false;
   return true;
 }
-
+ 
 function calcFee(selected: EventCode[]): number {
   return selected.reduce((sum, code) => {
     const ev = EVENTS.find((e) => e.code === code)!;
     return sum + (ev.type === "singles" ? SINGLES_FEE : DOUBLES_FEE);
   }, 0);
 }
-
+ 
 declare global {
   interface Window { Razorpay: any; }
 }
-
+ 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Register() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
@@ -95,7 +95,7 @@ export default function Register() {
   const [paying, setPaying] = useState(false);
   const [paymentDone, setPaymentDone] = useState(false);
   const [submitError, setSubmitError] = useState("");
-
+ 
   useEffect(() => {
     const s = document.createElement("script");
     s.src = "https://checkout.razorpay.com/v1/checkout.js";
@@ -103,19 +103,19 @@ export default function Register() {
     document.body.appendChild(s);
     return () => { document.body.removeChild(s); };
   }, []);
-
+ 
   useEffect(() => {
     if (form.dob) {
       const age = calculateAge(form.dob);
       setForm((f) => ({ ...f, age: String(age), selectedEvents: [], partners: {} }));
     }
   }, [form.dob]);
-
+ 
   const eligible = EVENTS.filter((e) =>
     form.age && form.gender ? isEventEligible(e, form.gender, Number(form.age)) : true
   );
   const totalFee = calcFee(form.selectedEvents);
-
+ 
   function validateStep1() {
     const e: typeof errors = {};
     if (!form.playerName.trim()) e.playerName = "Required";
@@ -127,7 +127,7 @@ export default function Register() {
     setErrors(e);
     return Object.keys(e).length === 0;
   }
-
+ 
   function validateStep2() {
     const e: typeof errors = {};
     if (form.selectedEvents.length === 0) e.events = "Please select at least one event";
@@ -143,7 +143,7 @@ export default function Register() {
     setErrors(e);
     return Object.keys(e).length === 0;
   }
-
+ 
   async function submitToSheets(paymentId: string) {
     const rows = form.selectedEvents.map((code) => {
       const ev = EVENTS.find((x) => x.code === code)!;
@@ -166,7 +166,7 @@ export default function Register() {
       body: JSON.stringify({ rows }),
     });
   }
-
+ 
   function handlePayment() {
     if (!validateStep2()) return;
     if (!window.Razorpay) { setSubmitError("Payment gateway failed to load. Please refresh."); return; }
@@ -192,12 +192,12 @@ export default function Register() {
     rzp.on("payment.failed", (r: any) => { setPaying(false); setSubmitError(`Payment failed: ${r.error.description}`); });
     rzp.open();
   }
-
+ 
   const setField = (key: keyof FormData, val: string) => {
     setForm((f) => ({ ...f, [key]: val }));
     setErrors((e) => ({ ...e, [key]: undefined }));
   };
-
+ 
   const toggleEvent = (code: EventCode) => {
     setForm((f) => {
       const has = f.selectedEvents.includes(code);
@@ -209,7 +209,7 @@ export default function Register() {
     });
     setErrors((e) => ({ ...e, events: undefined }));
   };
-
+ 
   const setPartnerField = (code: EventCode, field: keyof Partner, val: string) => {
     setForm((f) => ({
       ...f,
@@ -217,7 +217,7 @@ export default function Register() {
     }));
     setErrors((e) => ({ ...e, [`${code}_${field}`]: undefined }));
   };
-
+ 
   return (
     <div style={{ minHeight: "100vh", background: "#f4f2ef", fontFamily: "'DM Sans', sans-serif" }}>
       <style>{`
@@ -272,7 +272,7 @@ export default function Register() {
         .is strong{color:#1a1a1a;font-weight:600;}
         .sn{text-align:center;font-size:.67rem;color:#c2bdb6;letter-spacing:.5px;margin-top:12px;}
       `}</style>
-
+ 
       {/* ── Header ───────────────────────────────────────────── */}
       <div style={{
         background: "#1a1a1a",
@@ -298,10 +298,10 @@ export default function Register() {
         {/* gold rule */}
         <div style={{ height:"1px",background:"linear-gradient(90deg,transparent,rgba(212,175,97,.35),transparent)",marginTop:"26px",position:"relative" }} />
       </div>
-
+ 
       {/* ── Form ─────────────────────────────────────────────── */}
       <div style={{ maxWidth:460,margin:"0 auto",padding:"32px 18px 60px" }}>
-
+ 
         {/* Step bar */}
         {step < 3 && (
           <div style={{ display:"flex",alignItems:"flex-start",gap:0,marginBottom:"32px" }}>
@@ -328,7 +328,7 @@ export default function Register() {
             ))}
           </div>
         )}
-
+ 
         {/* ══ STEP 1 ══════════════════════════════════════════ */}
         {step === 1 && (
           <>
@@ -338,24 +338,24 @@ export default function Register() {
             <p style={{ fontSize:".78rem",color:"#aaa",marginBottom:28,lineHeight:1.5 }}>
               Just the essentials — takes under a minute.
             </p>
-
+ 
             <div className="fl">
               <div className="flabel"><span>Full Name</span>{errors.playerName&&<span className="fe">{errors.playerName}</span>}</div>
               <input className={`fi${errors.playerName?" err":""}`} placeholder="As per school ID card"
                 value={form.playerName} onChange={(e)=>setField("playerName",e.target.value)} />
             </div>
-
+ 
             <div className="fl">
               <div className="flabel"><span>Date of Birth</span>{errors.dob&&<span className="fe">{errors.dob}</span>}</div>
               <input type="date" className={`fi${errors.dob?" err":""}`}
                 value={form.dob} min="2010-01-01" max="2020-12-31"
                 onChange={(e)=>setField("dob",e.target.value)} />
               {form.age&&!errors.dob&&(
-                <div className="ab"><span className="abd"/><span>Age as of Dec 31, 2025 — <strong>{form.age} yrs</strong></span></div>
+                <div className="ab"><span className="abd"/><span>Age — <strong>{form.age} yrs</strong></span></div>
               )}
-              <div className="nt">Age calculated as on December 31, 2025 per tournament rules.</div>
+ 
             </div>
-
+ 
             <div className="fl">
               <div className="flabel"><span>Gender</span>{errors.gender&&<span className="fe">{errors.gender}</span>}</div>
               <div style={{ display:"flex",gap:10 }}>
@@ -365,9 +365,9 @@ export default function Register() {
                 ))}
               </div>
             </div>
-
+ 
             <div className="div"/>
-
+ 
             <div className="fl">
               <div className="flabel"><span>WhatsApp Number</span>{errors.whatsapp&&<span className="fe">{errors.whatsapp}</span>}</div>
               <input type="tel" className={`fi${errors.whatsapp?" err":""}`}
@@ -375,20 +375,20 @@ export default function Register() {
                 value={form.whatsapp} onChange={(e)=>setField("whatsapp",e.target.value.replace(/\D/g,""))} />
               <div className="nt">You'll be added to the participants WhatsApp group post-registration.</div>
             </div>
-
+ 
             <div className="fl">
               <div className="flabel"><span>Email Address</span>{errors.email&&<span className="fe">{errors.email}</span>}</div>
               <input type="email" className={`fi${errors.email?" err":""}`}
                 placeholder="For payment receipt"
                 value={form.email} onChange={(e)=>setField("email",e.target.value)} />
             </div>
-
+ 
             <button className="bp" style={{ marginTop:4 }} onClick={()=>{ if(validateStep1()) setStep(2); }}>
               Continue to Events
             </button>
           </>
         )}
-
+ 
         {/* ══ STEP 2 ══════════════════════════════════════════ */}
         {step === 2 && (
           <>
@@ -398,14 +398,14 @@ export default function Register() {
             <p style={{ fontSize:".78rem",color:"#aaa",marginBottom:20,lineHeight:1.5 }}>
               Eligible for {form.gender==="Male"?"boys":"girls"}, age {form.age} — tap to select.
             </p>
-
+ 
             <div style={{ display:"flex",gap:8,marginBottom:20 }}>
               <span className="lc">Singles — ₹600</span>
               <span className="lc">Doubles — ₹900</span>
             </div>
-
+ 
             {errors.events&&<div className="eb">{errors.events}</div>}
-
+ 
             <div>
               {eligible.map((ev)=>{
                 const sel = form.selectedEvents.includes(ev.code);
@@ -433,7 +433,7 @@ export default function Register() {
                           {form.partners[ev.code]?.dob&&!errors[`${ev.code}_dob`]&&(
                             <div className="ab" style={{ marginTop:8 }}>
                               <span className="abd"/>
-                              <span>Age as of Dec 31, 2025 — <strong>{calculateAge(form.partners[ev.code]!.dob)} yrs</strong></span>
+                              <span>Age — <strong>{calculateAge(form.partners[ev.code]!.dob)} yrs</strong></span>
                             </div>
                           )}
                         </div>
@@ -443,7 +443,7 @@ export default function Register() {
                 );
               })}
             </div>
-
+ 
             {form.selectedEvents.length>0&&(
               <div className="fb">
                 <p className="fbt">Fee Summary</p>
@@ -462,9 +462,9 @@ export default function Register() {
                 </div>
               </div>
             )}
-
+ 
             {submitError&&<div className="eb">{submitError}</div>}
-
+ 
             <div style={{ display:"flex",gap:10,marginTop:4 }}>
               <button className="bk" onClick={()=>setStep(1)}>← Back</button>
               <button className="bp" style={{ flex:1,marginTop:0 }}
@@ -475,7 +475,7 @@ export default function Register() {
             <p className="sn" style={{ marginTop:13 }}>🔒 Secured by Razorpay · UPI · Cards · Net Banking</p>
           </>
         )}
-
+ 
         {/* ══ STEP 3 ══════════════════════════════════════════ */}
         {step===3&&paymentDone&&(
           <>
@@ -489,7 +489,7 @@ export default function Register() {
                 Receipt sent to <span style={{ color:"#1a1a1a" }}>{form.email}</span>.
               </p>
             </div>
-
+ 
             <div style={{ background:"#fff",border:"1px solid #e0dbd4",borderRadius:9,overflow:"hidden",margin:"22px 0" }}>
               <div style={{ padding:"12px 16px",borderBottom:"1px solid #f2ede6" }}>
                 <span style={{ fontSize:".63rem",fontWeight:700,letterSpacing:"2.5px",textTransform:"uppercase",color:"#bbb" }}>Registered Events</span>
@@ -504,20 +504,20 @@ export default function Register() {
                 );
               })}
             </div>
-
+ 
             <a href={WHATSAPP_INVITE} target="_blank" rel="noopener noreferrer" className="wb">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
               Join Participants Group
             </a>
-
+ 
             <div className="is">
               <strong>📅 Dates</strong> — 6th &amp; 7th June<br/>
               <strong>📍 Venue</strong> — RPUG Badminton Court, NiBM<br/>
               <strong>🏆 Prizes</strong> — Cash, Medals &amp; Gifts for winner &amp; runner-up
             </div>
-
+ 
             <p style={{ textAlign:"center",marginTop:24,fontSize:".68rem",color:"#ccc",fontStyle:"italic",letterSpacing:".5px" }}>
               Play hard. Smash limits. Be a champion.
             </p>
