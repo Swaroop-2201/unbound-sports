@@ -1,5 +1,6 @@
 import { MessageCircle } from "lucide-react"
-import badmintonlImg from "../../assets/hero/badminton.jpg"
+import badmintonImg from "../../assets/hero/badminton.jpg"
+import tmtimg from "../../assets/hero/tournament.png"
 
 const Hero = () => {
     return (
@@ -100,22 +101,49 @@ const Hero = () => {
                 {/* RIGHT IMAGE */}
                 <div className="relative flex justify-center">
 
-                    {/* Main Image */}
-                    <img
-                        src={badmintonlImg}
-                        alt="Sports Equipment"
-                        className="w-[85%] md:w-full object-contain"
-                    />
+                    {/* Clickable Image */}
+                    <a
+                        href="https://unboundsports.in/register"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-[85%] md:w-full block"
+                    >
+                        <img
+                            src={tmtimg}
+                            alt="Sports Equipment"
+                            className="w-full object-contain rounded-xl"
+                        />
+                    </a>
 
                     {/* Floating Card (Premium Touch) */}
-                    <div className="absolute bottom-6 left-6 bg-white shadow-xl rounded-xl px-4 py-3 text-sm">
+                    {/* <div className="absolute bottom-6 left-6 bg-white shadow-xl rounded-xl px-4 py-3 text-sm">
                         <p className="font-semibold text-gray-900">Top Quality</p>
                         <p className="text-xs text-gray-500">
                             Trusted by professionals
                         </p>
-                    </div>
+                    </div> */}
 
                 </div>
+
+                {/* RIGHT IMAGE */}
+                {/* <div className="relative flex justify-center"> */}
+
+                    {/* Main Image */}
+                    {/* <img
+                        src={tmtimg}
+                        alt="Sports Equipment"
+                        className="w-[85%] md:w-full object-contain"
+                    /> */}
+
+                    {/* Floating Card (Premium Touch) */}
+                    {/* <div className="absolute bottom-6 left-6 bg-white shadow-xl rounded-xl px-4 py-3 text-sm">
+                        <p className="font-semibold text-gray-900">Top Quality</p>
+                        <p className="text-xs text-gray-500">
+                            Trusted by professionals
+                        </p>
+                    </div> */}
+
+                {/* </div> */}
 
             </div>
         </section>
