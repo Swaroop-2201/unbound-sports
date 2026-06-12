@@ -567,8 +567,8 @@ const SINGLES_FEE = 900;
 const DOUBLES_FEE = 1600;
 
 // ── Replace these values before going live ────────────────────────────────────
-const RAZORPAY_KEY = "rzp_test_T0hez2cmO9H9iS";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEGo080wZGdl4y0atAa1tXnx-msB7-2cuLmnx-7g4jNYTF-XKXN_2B-yZHFqWFtzmYsA/exec";
+const RAZORPAY_KEY = "rzp_live_SoktAIRMkzPSfy";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwxEjZ3gOvII3qjDnGKbXcZq0DPf2PxvOSYNKDiMFcE_coHFOwLlAzSGEI9aD6bZB0x/exec";
 const WHATSAPP_INVITE = "https://chat.whatsapp.com/BnATDgJY1e91uOAF4eMFv4";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -796,7 +796,7 @@ export default function Register() {
           <br />Badminton Tournament
         </h1>
         <div style={{ display:"flex",justifyContent:"center",gap:"18px",marginTop:"18px",position:"relative",flexWrap:"wrap" }}>
-          {["First Edition","6–7 June","RPUG Court, NiBM"].map((t) => (
+          {["Open and 40+","11th and 12th of July","Deluxe Badminton Courts"].map((t) => (
             <span key={t} style={{ fontSize:".63rem",fontWeight:500,letterSpacing:"2px",textTransform:"uppercase",color:"rgba(255,255,255,.3)" }}>{t}</span>
           ))}
         </div>
@@ -1017,7 +1017,7 @@ export default function Register() {
             <div style={{ textAlign:"center",paddingTop:8 }}>
               <div className="si">🏸</div>
               <h2 style={{ fontFamily:"'Cormorant Garamond',serif",fontSize:"1.65rem",fontWeight:600,color:"#1a1a1a",marginBottom:6 }}>
-                You're registered.
+                You're registered!
               </h2>
               <p style={{ fontSize:".82rem",color:"#999",lineHeight:1.7 }}>
                 Welcome, <strong style={{ color:"#1a1a1a" }}>{form.playerName}</strong>.<br />
@@ -1057,8 +1057,8 @@ export default function Register() {
             </a>
 
             <div className="is">
-              <strong>📅 Dates</strong> — 6th &amp; 7th June<br />
-              <strong>📍 Venue</strong> — RPUG Badminton Court, NiBM<br />
+              <strong>📅 Dates</strong> — 11th &amp; 12th July<br />
+              <strong>📍 Venue</strong> — Deluxe Badminton Courts<br />
               <strong>🏆 Prizes</strong> — Cash, Medals &amp; Gifts for winner &amp; runner-up
             </div>
 
