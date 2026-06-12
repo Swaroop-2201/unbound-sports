@@ -1,5 +1,4 @@
 import { MessageCircle } from "lucide-react"
-import badmintonImg from "../../assets/hero/badminton.jpg"
 import tmtimg from "../../assets/hero/tournament.png"
 
 const Hero = () => {
