@@ -568,7 +568,7 @@ const DOUBLES_FEE = 1600;
 
 // ── Replace these values before going live ────────────────────────────────────
 const RAZORPAY_KEY = "rzp_test_Soj1b6PIOdorl7";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0XAJYWypnxUUbg9iMEaP07FNo60PAshAdBwLS6_uayIbi0AordoJe2FAB8wpcLClAog/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzvFw9vZlvR0TmBKWP-Zbg5OFbkxpOtrv99fCfgQJAFT1smYg5MPbPEkTlK0Zhk03s1Sg/exec";
 const WHATSAPP_INVITE = "https://chat.whatsapp.com/BnATDgJY1e91uOAF4eMFv4";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
