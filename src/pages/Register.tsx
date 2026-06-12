@@ -567,7 +567,7 @@ const SINGLES_FEE = 900;
 const DOUBLES_FEE = 1600;
 
 // ── Replace these values before going live ────────────────────────────────────
-const RAZORPAY_KEY = "rzp_test_Soj1b6PIOdorl7";
+const RAZORPAY_KEY = "rzp_test_T0hez2cmO9H9iS";
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEGo080wZGdl4y0atAa1tXnx-msB7-2cuLmnx-7g4jNYTF-XKXN_2B-yZHFqWFtzmYsA/exec";
 const WHATSAPP_INVITE = "https://chat.whatsapp.com/BnATDgJY1e91uOAF4eMFv4";
 
